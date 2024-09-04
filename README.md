@@ -1,0 +1,2 @@
+# fastapi_react_chat
+使用fastapi作为后端，react作为前端，搭建一个chat的web应用
