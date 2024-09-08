@@ -19,3 +19,12 @@ class AuthorizationError(Exception):
 
     def __init__(self, message: str = "Forbidden"):
         self.message = message
+
+
+class UserExistError(Exception):
+    """
+    用户已存在
+    """
+
+    def __init__(self, message: str = "User"):
+        self.message = message
