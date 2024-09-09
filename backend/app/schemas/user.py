@@ -34,3 +34,7 @@ class UserPassword(BaseModel):
     id: int = Field(None, description="用户id")
     username: str = Field(description="用户名")
     password: str = Field(description="密码")
+    cellphone: str = Field(description="手机号")
+
+class UserPasswordModify(UserPassword):
+    verification_code: str = Field(description="验证码")

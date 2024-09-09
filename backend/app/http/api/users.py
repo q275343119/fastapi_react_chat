@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends
 from app.http import deps
 from app.http.deps import get_db
 from app.models.user import User
-from app.schemas.user import UserDetail, UserPassword
+from app.schemas.user import UserDetail, UserPassword,UserPasswordModify
 from app.services.users.user_manager import CreateUser, ModifyUser
 
 router = APIRouter(
@@ -23,5 +23,5 @@ def create_user(request_data: UserPassword):
     return CreateUser(request_data).respond()
 
 @router.post("/modify_password", response_model=UserDetail, dependencies=[Depends(get_db)])
-def modify_password(request_data: UserPassword):
+def modify_password(request_data: UserPasswordModify):
     return ModifyUser(request_data).respond()
