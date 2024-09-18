@@ -1,1 +1,9 @@
 /backend/.env
+./venv/
+/venv/
+/.idea
+/backend/__pycahe__/
+/backend/storage/
+*.pyc
+/httpclient
+/frontend/node_modules

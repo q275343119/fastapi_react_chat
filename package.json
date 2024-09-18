@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "oh-router-react": "^0.0.4",
+    "oh-router": "^0.1.1"
+  }
+}
