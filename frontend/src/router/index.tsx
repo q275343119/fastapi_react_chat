@@ -1,8 +1,11 @@
 import { Router } from "oh-router";
-import Login from "../pages/login/login";
-import {Chat} from '../pages/chat'
+import Login from "../pages/login/Login";
+import { Chat } from "../pages/chat";
+import { LoginCHeckMIddleware } from "./middlewares/loginCheck";
 
 export const router = new Router({
+  middlewares: [new LoginCHeckMIddleware()],
+
   routes: [
     {
       path: "/login",
@@ -13,8 +16,12 @@ export const router = new Router({
       element: <Chat />,
     },
     {
-      path:"/",
-      redirect:"/login"
-    }
+      path: "/",
+      redirect: "/chat",
+    },
+    {
+      path: "*",
+      element: <div>404</div>,
+    },
   ],
 });
