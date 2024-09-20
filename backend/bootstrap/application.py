@@ -4,10 +4,11 @@
 import logging
 
 from fastapi import FastAPI
+from fastapi.responses import ORJSONResponse
 
 from app.providers import app_provider
-from app.providers import logging_provider
 from app.providers import handle_exception
+from app.providers import logging_provider
 from app.providers import route_provider
 
 
@@ -16,7 +17,7 @@ def create_app() -> FastAPI:
     建立app
     :return:
     """
-    app = FastAPI()
+    app = FastAPI(default_response_class=ORJSONResponse)
     # 注册日志
     register(app, logging_provider)
     # 注册app 启动项 结束项 中间件

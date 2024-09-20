@@ -6,5 +6,8 @@ peewee==3.16.3
 pydantic==1.10.18
 python_jose==3.3.0
 redis==5.0.8
-starlette==0.38.5
 uvicorn==0.30.6
+orjson==3.10.7
+pydantic[dotenv]==1.0.1
+pymysql==1.1.1
+bcrypt==4.2.0

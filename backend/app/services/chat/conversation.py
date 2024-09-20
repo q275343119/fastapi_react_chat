@@ -1,5 +1,6 @@
 from typing import List
 
+from app.decorator.response_decorator import response_wrapper
 from app.models.chat import Chat
 from app.models.conversation import Conversation
 from app.models.user import User
@@ -12,6 +13,7 @@ class ConversationList:
     def __init__(self, user: User):
         self.user = user
 
+    @response_wrapper
     def respond(self):
         conversations = Conversation.select().where(Conversation.user_id == self.user.id,
                                                     Conversation.delete_flag == 0).order_by(
@@ -26,6 +28,7 @@ class ConversationDetail:
         self.conversation_id = conversation_id
         self.user = user
 
+    @response_wrapper
     def respond(self):
         chats = Chat.select().where(Chat.conversation_id == self.conversation_id,
                                     Chat.user_id == self.user.id).order_by(Chat.created_at, Chat.chat_id)[:]
@@ -38,6 +41,7 @@ class ConversationCreator:
     def __init__(self, user: User):
         self.user = user
 
+    @response_wrapper
     def respond(self):
         conversation = Conversation.create(user_id=self.user.id, title="")
 
@@ -60,6 +64,7 @@ class SendMessage:
     def _update_conversation_title(self):
         pass
 
+    @response_wrapper
     def respond(self):
         chats: List[Chat] = self._get_history()
         his_message = [{"role": c.role, "content": c.content} for c in chats]

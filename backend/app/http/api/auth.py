@@ -3,6 +3,7 @@ from starlette.responses import JSONResponse
 
 from app.http.deps import get_db
 from app.schemas.auth import Token
+from app.schemas.base import ResultModel
 from app.services.auth import random_code_verifier
 from app.services.auth.grant import PasswordGrant, CellphoneGrant
 from app.services.auth.oauth2_schema import OAuth2PasswordRequest, OAuth2CellphoneRequest
@@ -14,16 +15,17 @@ router = APIRouter(
 )
 
 
-@router.post("/token", response_model=Token, dependencies=[Depends(get_db)])
+@router.post("/token", response_model=ResultModel[Token], dependencies=[Depends(get_db)])
 def token(request_data: OAuth2PasswordRequest):
     """
     用户名+密码登录
     """
+    raise ValueError
     grant = PasswordGrant(request_data)
     return grant.respond()
 
 
-@router.post("/cellphone/token", response_model=Token, dependencies=[Depends(get_db)])
+@router.post("/cellphone/token", response_model=ResultModel[Token], dependencies=[Depends(get_db)])
 def cellphone_token(request_data: OAuth2CellphoneRequest):
     """
     手机号+验证码登录
