@@ -5,9 +5,9 @@ from app.schemas.base import ResultModel
 
 def response_wrapper(func):
     @wraps(func)
-    async def wrapper(*args, **kwargs):
+    def wrapper(*args, **kwargs):
         res = ResultModel()
-        data = await func(*args, **kwargs)
+        data = func(*args, **kwargs)
         res.data = data
         return res
 

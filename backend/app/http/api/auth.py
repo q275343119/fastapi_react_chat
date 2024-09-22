@@ -20,7 +20,6 @@ def token(request_data: OAuth2PasswordRequest):
     """
     用户名+密码登录
     """
-    raise ValueError
     grant = PasswordGrant(request_data)
     return grant.respond()
 
