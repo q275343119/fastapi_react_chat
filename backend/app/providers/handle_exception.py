@@ -33,9 +33,9 @@ def register(app):
         return await request_validation_exception_handler(request, exc)
 
     @app.exception_handler(Exception)
-    async def common_exception_handler(request: Request, e: ValueError):
+    async def global_exception_handler(request: Request, exc):
         """
         通用异常处理
         """
-        # TODO 全局异常捕获
-        return JSONResponse(status_code=500, content=jsonable_encoder(ResultModel(code=500, msg=str(e))))
+        # FastApi中debug为True的时候 全局异常会失效
+        return JSONResponse(status_code=500, content=jsonable_encoder(ResultModel(code=500, msg=str(exc))))
